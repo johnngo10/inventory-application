@@ -1,0 +1,22 @@
+<%- include('partials/head')%>
+    <h2>New Category</h2>
+    <div>
+        <a href="/">Back</a>
+    </div>
+    <form action="/new-category" method="POST">
+        <fieldset>
+            <label for="name">
+                Name:
+                <input type="text" name="name" required>
+            </label>
+            <label for="description">
+                Description:
+                <textarea name="description" id="" cols="30" rows="10" required></textarea>
+            </label>
+            <label for="submit">
+                <input type="submit">
+            </label>
+        </fieldset>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<%- include('partials/head')%>
+    <div>
+        <a href="/new-category">New Category</a>
+    </div>
+    <div>
+        <% categories.map((value) => { %>
+            <div>
+                <p><%=value.name%></p>
+                <p><%=value.description%></p>
+            </div>
+        <% }) %>
+    </div>
+  </body>
+</html>
