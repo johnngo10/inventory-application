@@ -5,8 +5,10 @@
     <div>
         <% categories.map((value) => { %>
             <div>
-                <p><%=value.name%></p>
-                <p><%=value.description%></p>
+                <a href=<%=`/category/${value.name}`%>>
+                    <p><%=value.name%></p>
+                    <p><%=value.description%></p>
+                </a>
             </div>
         <% }) %>
     </div>
