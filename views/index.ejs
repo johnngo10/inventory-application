@@ -1,13 +1,17 @@
 <%- include('partials/head')%>
-    <div>
+    <div class="nav-container">
         <a href="/new-category">New Category</a>
     </div>
-    <div>
+    <div class="category-list-container">
         <% categories.map((value) => { %>
-            <div>
-                <a href=<%=`/category/${value.name}`%>>
-                    <p><%=value.name%></p>
+            <div class="categories">
+                <a href=<%=`/category/${value.name}`%> class>
+                    <p class="category-name"><%=value.name%></p>
                     <p><%=value.description%></p>
+                    <div class="category-actions">
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </div>
                 </a>
             </div>
         <% }) %>

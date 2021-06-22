@@ -1,8 +1,18 @@
+const Category = require("../models/Category");
 const Item = require("../models/Item");
 
 // Display Item create form on GET
 exports.item_create_get = function (req, res) {
-  res.render("item_form");
+  const categoryName = req.params.name;
+  Category.find(function (err, data) {
+    if (err) {
+      res.status(404).json({ message: err.message });
+    } else {
+      res
+        .status(200)
+        .render("item_form", { categories: data, categoryName: categoryName });
+    }
+  });
 };
 
 // Handle Item create on POST
@@ -20,7 +30,7 @@ exports.item_create_post = function (req, res) {
     });
 
     item.save().then((result) => {
-      res.redirect("/");
+      res.redirect(`/category/${category}`);
     });
   }
 };

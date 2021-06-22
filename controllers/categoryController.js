@@ -1,4 +1,5 @@
 const Category = require("../models/Category");
+const Item = require("../models/Item");
 
 // Display a list of all categories
 exports.category_list = function (req, res) {
@@ -14,7 +15,16 @@ exports.category_list = function (req, res) {
 // Display detail page for a specific category
 exports.category_detail = function (req, res) {
   const categoryName = req.params.name;
-  res.render("category", { categoryName: categoryName });
+  let items;
+
+  Item.find({ category: categoryName }, function (err, data) {
+    if (err) {
+      res.status(404).json({ message: err.message });
+    } else {
+      items = data;
+      res.render("category", { categoryName: categoryName, items: items });
+    }
+  });
 };
 
 // Display Category create form on GET

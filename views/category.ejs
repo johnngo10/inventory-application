@@ -2,12 +2,21 @@
     <div>
         <a href="/new-category">New Category</a>
         <a href="/">Homepage</a>
-        <a href="/new-item">New Item</a>
+        <a href=<%=`/category/${categoryName}/new-item`%>>New Item</a>
     </div>
     <div>
         <h1>
             <%= categoryName %>
         </h1>
+        <div>
+            <ul>
+                <% items.map((value) => { %>
+                    <li>
+                        <%= value.name %>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
     </div>
   </body>
 </html>

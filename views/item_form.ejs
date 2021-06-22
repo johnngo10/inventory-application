@@ -3,7 +3,7 @@
     <div>
         <a href="/">Back</a>
     </div>
-    <form action="/new-item" method="POST">
+    <form action=<%=`/category/${categoryName}/new-item`%> method="POST">
         <fieldset>
             <label for="name">
                 Name:
@@ -15,11 +15,17 @@
             </label>
             <label for="category">
                 Category
-                <input type="text" name="category">
+                <select name="category" id="category-dropdown">
+                    <% categories.map((value) => { %>
+                        <option value=<%=`${value.name}`%> <%= value.name === categoryName ? 'selected' : null %>> 
+                            <%=value.name%>
+                        </option>
+                    <% }) %>
+                </select>
             </label>
             <label for="price">
                 Price
-                <input type="number" name="price">
+                <input type="number" name="price" value=0 step="any">
             </label>
             <label for="number_in_stock">
                 Number in Stock:

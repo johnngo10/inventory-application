@@ -1,0 +1,57 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header */
+
+header {
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* index */
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+}
+
+.category-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.categories {
+  border: 1px solid black;
+  text-align: center;
+  width: 400px;
+  margin: 10px 0;
+}
+
+.categories a {
+  text-decoration: none;
+  color: black;
+}
+
+.categories p {
+  margin: 20px 0;
+}
+
+.category-name {
+  font-weight: bold;
+}
+
+.category-actions {
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-actions a {
+  margin: 10px;
+}

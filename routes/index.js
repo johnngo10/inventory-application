@@ -22,9 +22,9 @@ router.post("/new-category", category_controller.category_create_post);
 /// ITEM ROUTES ///
 
 // GET request for creating Item
-router.get("/new-item", item_controller.item_create_get);
+router.get("/category/:name/new-item", item_controller.item_create_get);
 
 // POST request for creating Item
-router.post("/new-item", item_controller.item_create_post);
+router.post("/category/:name/new-item", item_controller.item_create_post);
 
 module.exports = router;
