@@ -1,18 +1,26 @@
 <%- include('partials/head')%>
-    <div>
-        <a href="/new-category">New Category</a>
+    <div class="nav-container">
         <a href="/">Homepage</a>
+        <a href="/new-category">New Category</a>
         <a href=<%=`/category/${categoryName}/new-item`%>>New Item</a>
     </div>
-    <div>
+    <div class="category-detail-container">
         <h1>
             <%= categoryName %>
         </h1>
-        <div>
-            <ul>
+        <div class="category-list-container">
+            <% if (items.length === 0 ) { %>
+                <p>No items</p>
+            <% } %>
+            <ul class="category-list">
                 <% items.map((value) => { %>
-                    <li>
-                        <%= value.name %>
+                    <li class="category-list-items">
+                        <p class="item-name"><%= value.name %></p>
+                        <p class="item-description"><%= value.description %></p>
+                        <div class="item-price-stock">
+                            <p class="item-price">Price: $<%= value.price %></p>
+                            <p class="item-stock">Qty: <%= value.number_in_stock %></p>
+                        </div>
                     </li>
                 <% }) %>
             </ul>

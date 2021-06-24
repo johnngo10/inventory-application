@@ -49,3 +49,15 @@ exports.category_create_post = function (req, res) {
     });
   }
 };
+
+// Display Category edit form on GET
+exports.category_edit_get = function (req, res) {
+  const categoryName = req.params.name;
+  Category.find({ name: categoryName }, function (err, data) {
+    if (err) {
+      res.status(404).json({ message: err.message });
+    } else {
+      res.status(200).render("category_edit", { category: data });
+    }
+  });
+};

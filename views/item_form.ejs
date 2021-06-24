@@ -1,10 +1,11 @@
 <%- include('partials/head')%>
-    <h2>New Item</h2>
-    <div>
-        <a href="/">Back</a>
+    <div class="nav-container">
+        <a href="/">Homepage</a>
+        <a href="/new-category">New Category</a>
     </div>
-    <form action=<%=`/category/${categoryName}/new-item`%> method="POST">
-        <fieldset>
+    <form action=<%=`/category/${categoryName}/new-item`%> method="POST" class="new-item-form">
+        <h2>New Item</h2>
+        <fieldset class="info-fields">
             <label for="name">
                 Name:
                 <input type="text" name="name" required>
@@ -13,9 +14,17 @@
                 Description:
                 <textarea name="description" id="" cols="30" rows="10" required></textarea>
             </label>
+            <label for="price">
+                Price:
+                <input type="number" name="price" value=0 step="any">
+            </label>
+            <label for="number_in_stock">
+                Number in Stock:
+                <input type="number" name="number_in_stock" value=0>
+            </label>
             <label for="category">
-                Category
-                <select name="category" id="category-dropdown">
+                Category:
+                <select name="category" id="category-dropdown" class="category-dropdown">
                     <% categories.map((value) => { %>
                         <option value=<%=`${value.name}`%> <%= value.name === categoryName ? 'selected' : null %>> 
                             <%=value.name%>
@@ -23,16 +32,10 @@
                     <% }) %>
                 </select>
             </label>
-            <label for="price">
-                Price
-                <input type="number" name="price" value=0 step="any">
-            </label>
-            <label for="number_in_stock">
-                Number in Stock:
-                <input type="number" name="number_in_stock" value=0>
-            </label>
+        </fieldset>
+        <fieldset>
             <label for="submit">
-                <input type="submit">
+                <input type="submit" class="submit-button">
             </label>
         </fieldset>
     </form>

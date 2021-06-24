@@ -19,6 +19,9 @@ router.get("/new-category", category_controller.category_create_get);
 // POST request for creating Category
 router.post("/new-category", category_controller.category_create_post);
 
+// GET request for editing Category
+router.get("/category/:name/edit", category_controller.category_edit_get);
+
 /// ITEM ROUTES ///
 
 // GET request for creating Item

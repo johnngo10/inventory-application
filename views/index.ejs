@@ -9,7 +9,8 @@
                     <p class="category-name"><%=value.name%></p>
                     <p><%=value.description%></p>
                     <div class="category-actions">
-                        <a href="">Edit</a>
+                        <a href=<%=`/category/${value.name}/edit`%>>Edit</a>
+                        <a href=<%=`/category/${value.name}/new-item`%>>Add item</a>
                         <a href="">Delete</a>
                     </div>
                 </a>
