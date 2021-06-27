@@ -2,21 +2,21 @@
     <div class="nav-container">
         <a href="/">Back</a>
     </div>
-    <form action="/new-category" method="POST" class="new-category-form">
-        <h2>New Category</h2>
+    <form action="/category/<%=category._id%>/edit" method="POST" class="new-category-form">
+        <h2>Edit Category</h2>
         <fieldset class="info-fields">
-            <label for="name" >
+            <label for="name">
                 Name:
-                <input type="text" name="name" required value=<%=`${category[0].name}`%>>
+                <input type="text" name="name" required value="<%=category.name%>"">
             </label>
             <label for="description">
                 Description:
-                <textarea name="description" id="" cols="30" rows="10" required ><%=`${category[0].description}`%></textarea>
+                <textarea name="description" id="" cols="30" rows="10" required ><%=category.description%></textarea>
             </label>
         </fieldset>
-        <fieldset>
+        <fieldset class="button-container">
             <input type="submit" class="submit-button">
-            <button>Delete</button>
+            <a href="/category/<%=category._id%>/delete" class="delete-button">Delete</a>
         </fieldset>
     </form>
   </body>

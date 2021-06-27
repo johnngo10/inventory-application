@@ -5,13 +5,12 @@
     <div class="category-list-container">
         <% categories.map((value) => { %>
             <div class="categories">
-                <a href=<%=`/category/${value.name}`%> class>
+                <a href=<%=`/category/${value._id}`%> class>
                     <p class="category-name"><%=value.name%></p>
                     <p><%=value.description%></p>
                     <div class="category-actions">
-                        <a href=<%=`/category/${value.name}/edit`%>>Edit</a>
-                        <a href=<%=`/category/${value.name}/new-item`%>>Add item</a>
-                        <a href="">Delete</a>
+                        <a href=<%=`/category/${value.id}/edit`%>>Edit</a>
+                        <a href=<%=`/category/${value.id}/new-item`%>>Add item</a>
                     </div>
                 </a>
             </div>

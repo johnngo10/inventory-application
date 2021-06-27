@@ -164,6 +164,13 @@ fieldset {
   color: #333333;
 }
 
+.delete-button {
+  border: 1px solid black;
+  padding: 7.5px;
+  text-decoration: none;
+  color: black;
+}
+
 /* Create item form */
 
 .new-item-form {
@@ -178,4 +185,18 @@ fieldset {
 .category-dropdown {
   font-size: 16px;
   padding: 5px;
+}
+
+/* Delete Page */
+.delete-form {
+  text-align: center;
+  margin: 60px 0;
+  width: 400px;
+}
+
+.cancel-button {
+  border: 1px solid black;
+  padding: 7.5px;
+  text-decoration: none;
+  color: black;
 }

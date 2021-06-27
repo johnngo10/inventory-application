@@ -11,7 +11,8 @@ const itemSchema = new Schema({
     required: true,
   },
   category: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "Category",
   },
   price: {
     type: Number,

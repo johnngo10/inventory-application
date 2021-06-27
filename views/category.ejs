@@ -2,11 +2,11 @@
     <div class="nav-container">
         <a href="/">Homepage</a>
         <a href="/new-category">New Category</a>
-        <a href=<%=`/category/${categoryName}/new-item`%>>New Item</a>
+        <a href=<%=`/category/${category._id}/new-item`%>>New Item</a>
     </div>
     <div class="category-detail-container">
         <h1>
-            <%= categoryName %>
+            <%= category.name %>
         </h1>
         <div class="category-list-container">
             <% if (items.length === 0 ) { %>

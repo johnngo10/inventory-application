@@ -14,15 +14,23 @@ exports.category_list = function (req, res) {
 
 // Display detail page for a specific category
 exports.category_detail = function (req, res) {
-  const categoryName = req.params.name;
+  const { id } = req.params;
   let items;
+  let category;
 
-  Item.find({ category: categoryName }, function (err, data) {
-    if (err) {
-      res.status(404).json({ message: err.message });
+  Category.findOne({ _id: id }, function (err, data) {
+    if (!data) {
+      res.status(404).send("No category with that id exists");
     } else {
-      items = data;
-      res.render("category", { categoryName: categoryName, items: items });
+      category = data;
+      Item.find({ category: id }, function (err, data) {
+        if (err) {
+          res.status(404).json({ message: err.message });
+        } else {
+          items = data;
+          res.render("category", { category: category, items: items });
+        }
+      });
     }
   });
 };
@@ -52,12 +60,54 @@ exports.category_create_post = function (req, res) {
 
 // Display Category edit form on GET
 exports.category_edit_get = function (req, res) {
-  const categoryName = req.params.name;
-  Category.find({ name: categoryName }, function (err, data) {
-    if (err) {
-      res.status(404).json({ message: err.message });
+  const categoryId = req.params.id;
+  Category.findOne({ _id: categoryId }, function (err, data) {
+    if (!data) {
+      res.status(404).send("No category with that id exists");
     } else {
       res.status(200).render("category_edit", { category: data });
+    }
+  });
+};
+
+// Handle Category update on PUT
+exports.category_edit_put = function (req, res) {
+  const categoryId = req.params.id;
+  const { name, description } = req.body;
+  Category.findOneAndUpdate(
+    { _id: categoryId },
+    { $set: { name: name, description: description } },
+    { new: true },
+    function (err, data) {
+      if (!data) {
+        res.status(404).json("No category with that id exists");
+      } else {
+        res.status(200).redirect("/");
+      }
+    }
+  );
+};
+
+// Display delete Category page
+exports.category_get_delete = function (req, res) {
+  const { id } = req.params;
+  Category.findOne({ _id: id }, function (err, data) {
+    if (!data) {
+      res.status(404).json("No category with that id exists");
+    } else {
+      res.render("category_delete", { id: id, category: data });
+    }
+  });
+};
+
+// Delete Category
+exports.category_delete = function (req, res) {
+  const { id } = req.params;
+  Category.findByIdAndDelete(id, function (err, data) {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).redirect("/");
     }
   });
 };
