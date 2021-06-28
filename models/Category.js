@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Item = require("./Item");
 const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
@@ -12,15 +13,14 @@ const categorySchema = new Schema({
   items: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Items",
+      ref: "Item",
     },
   ],
 });
 
-categorySchema.pre("findOneAndDelete", async function (data) {});
 categorySchema.post("findOneAndDelete", async function (category) {
-  if (category.products.length) {
-    Category.deleteMany({});
+  if (category.items.length) {
+    const res = await Item.deleteMany({ _id: { $in: category.items } });
   }
 });
 

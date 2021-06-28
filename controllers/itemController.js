@@ -4,19 +4,15 @@ const Item = require("../models/Item");
 // Display Item create form on GET
 exports.item_create_get = function (req, res) {
   const { id } = req.params;
-  Category.find(function (err, data) {
-    if (err) {
-      res.status(404).json({ message: err.message });
-    } else {
-      res.status(200).render("item_form", { categories: data, id: id });
-    }
-  });
+  const previousURL = req.headers.referer;
+  res.render("item_form", { id: id, previousURL: previousURL });
 };
 
 // Handle Item create on POST
-exports.item_create_post = function (req, res) {
+exports.item_create_post = async function (req, res) {
   const { id } = req.params;
   const { name, description, category, price, number_in_stock } = req.body;
+  const categorySchema = await Category.findById(id);
 
   if (!name || !description) {
     res.send("missing required fields");
@@ -24,14 +20,13 @@ exports.item_create_post = function (req, res) {
     const item = new Item({
       name,
       description,
-      category: id,
       price,
       number_in_stock,
     });
-
-    console.log(id);
-
-    item.save().then((result) => {
+    categorySchema.items.push(item);
+    item.category = categorySchema;
+    await categorySchema.save();
+    await item.save().then((result) => {
       res.redirect(`/category/${id}`);
     });
   }

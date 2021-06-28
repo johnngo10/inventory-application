@@ -22,21 +22,12 @@
                 Number in Stock:
                 <input type="number" name="number_in_stock" value=0>
             </label>
-            <label for="category">
-                Category:
-                <select name="category" id="category-dropdown" class="category-dropdown">
-                    <% categories.map((value) => { %>
-                        <option value=<%=`${value.name}`%> <%= value.id === id ? 'selected' : null %>> 
-                            <%=value.name%>
-                        </option>
-                    <% }) %>
-                </select>
-            </label>
         </fieldset>
         <fieldset>
             <label for="submit">
                 <input type="submit" class="submit-button">
             </label>
+            <a href="<%= previousURL %>" class="cancel-button">Cancel</a>
         </fieldset>
     </form>
   </body>

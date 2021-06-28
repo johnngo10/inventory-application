@@ -13,31 +13,16 @@ exports.category_list = function (req, res) {
 };
 
 // Display detail page for a specific category
-exports.category_detail = function (req, res) {
+exports.category_detail = async function (req, res) {
   const { id } = req.params;
-  let items;
-  let category;
-
-  Category.findOne({ _id: id }, function (err, data) {
-    if (!data) {
-      res.status(404).send("No category with that id exists");
-    } else {
-      category = data;
-      Item.find({ category: id }, function (err, data) {
-        if (err) {
-          res.status(404).json({ message: err.message });
-        } else {
-          items = data;
-          res.render("category", { category: category, items: items });
-        }
-      });
-    }
-  });
+  const category = await Category.findById(id).populate("items");
+  res.render("category", { category });
 };
 
 // Display Category create form on GET
 exports.category_create_get = function (req, res) {
-  res.render("category_form");
+  const previousURL = req.headers.referer;
+  res.render("category_form", { previousURL: previousURL });
 };
 
 // Handle Category create on POST
