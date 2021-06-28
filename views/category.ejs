@@ -2,7 +2,7 @@
     <div class="nav-container">
         <a href="/">Homepage</a>
         <a href="/new-category">New Category</a>
-        <a href=<%=`/category/${category._id}/new-item`%>>New Item</a>
+        <a href="/category/<%=category._id%>/new-item">New Item</a>
     </div>
     <div class="category-detail-container">
         <h1>
@@ -15,12 +15,14 @@
             <ul class="category-list">
                 <% category.items.map((value) => { %>
                     <li class="category-list-items">
-                        <p class="item-name"><%= value.name %></p>
-                        <p class="item-description"><%= value.description %></p>
-                        <div class="item-price-stock">
-                            <p class="item-price">Price: $<%= value.price %></p>
-                            <p class="item-stock">Qty: <%= value.number_in_stock %></p>
-                        </div>
+                        <a href="/category/<%=category._id%>/<%=value._id%>/edit">
+                            <p class="item-name"><%= value.name %></p>
+                            <p class="item-description"><%= value.description %></p>
+                            <div class="item-price-stock">
+                                <p class="item-price">Price: $<%= value.price %></p>
+                                <p class="item-stock">Qty: <%= value.number_in_stock %></p>
+                            </div>
+                        </a>
                     </li>
                 <% }) %>
             </ul>

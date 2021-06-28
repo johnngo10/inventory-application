@@ -57,11 +57,11 @@ exports.category_edit_get = function (req, res) {
 
 // Handle Category update on PUT
 exports.category_edit_put = function (req, res) {
-  const categoryId = req.params.id;
+  const { id } = req.params;
   const { name, description } = req.body;
   Category.findOneAndUpdate(
-    { _id: categoryId },
-    { $set: { name: name, description: description } },
+    { _id: id },
+    { $set: { name, description } },
     { new: true },
     function (err, data) {
       if (!data) {

@@ -11,7 +11,7 @@ exports.item_create_get = function (req, res) {
 // Handle Item create on POST
 exports.item_create_post = async function (req, res) {
   const { id } = req.params;
-  const { name, description, category, price, number_in_stock } = req.body;
+  const { name, description, price, number_in_stock } = req.body;
   const categorySchema = await Category.findById(id);
 
   if (!name || !description) {
@@ -30,4 +30,34 @@ exports.item_create_post = async function (req, res) {
       res.redirect(`/category/${id}`);
     });
   }
+};
+
+// Display Item edit form on GET
+exports.item_edit_get = async function (req, res) {
+  const { categoryId, id } = req.params;
+  const item = await Item.findById(id);
+  const previousURL = req.headers.referer;
+  res.render("item_edit", {
+    item: item,
+    categoryId: categoryId,
+    previousURL: previousURL,
+  });
+};
+
+// Handle Item update on PUT
+exports.item_edit_put = function (req, res) {
+  const { name, description, price, number_in_stock } = req.body;
+  const { categoryId, id } = req.params;
+  Item.findOneAndUpdate(
+    { _id: id },
+    { $set: { name, description, price, number_in_stock } },
+    { new: true },
+    function (err, data) {
+      if (!data) {
+        res.status(404).json("No item with that id exist");
+      } else {
+        res.redirect(`/category/${categoryId}`);
+      }
+    }
+  );
 };

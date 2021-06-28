@@ -142,6 +142,11 @@ fieldset {
   margin: 10px 0;
 }
 
+.category-list-items a {
+  text-decoration: none;
+  color: black;
+}
+
 .item-name {
   margin-bottom: 20px;
   font-weight: bold;

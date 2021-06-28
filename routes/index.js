@@ -39,4 +39,9 @@ router.get("/category/:id/new-item", item_controller.item_create_get);
 // POST request for creating Item
 router.post("/category/:id/new-item", item_controller.item_create_post);
 
+// GET request for editing item
+router.get("/category/:categoryId/:id/edit", item_controller.item_edit_get);
+
+router.post("/category/:categoryId/:id/edit", item_controller.item_edit_put);
+
 module.exports = router;
