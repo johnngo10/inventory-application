@@ -61,3 +61,22 @@ exports.item_edit_put = function (req, res) {
     }
   );
 };
+
+// Display Item delete page
+exports.item_delete_get = async function (req, res) {
+  const { categoryId, id } = req.params;
+  const item = await Item.findById(id);
+  res.render("item_delete", { item: item, categoryId: categoryId });
+};
+
+// Handle delete item
+exports.item_delete_post = function (req, res) {
+  const { categoryId, id } = req.params;
+  Item.findByIdAndDelete(id, function (err, data) {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.redirect(`/category/${categoryId}/`);
+    }
+  });
+};

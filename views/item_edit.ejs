@@ -1,7 +1,6 @@
 <%- include('partials/head')%>
     <div class="nav-container">
         <a href="/">Homepage</a>
-        <a href="/new-category">New Category</a>
     </div>
     <form action="/category/<%=categoryId%>/<%=item._id%>/edit" method="POST" class="new-item-form">
         <h2>Edit Item</h2>
@@ -23,11 +22,12 @@
                 <input type="number" name="number_in_stock" value="<%=item.number_in_stock%>">
             </label>
         </fieldset>
-        <fieldset>
-            <label for="submit">
+        <fieldset class="button-container">
+            <div>
                 <input type="submit" class="submit-button">
-            </label>
-            <a href="<%= previousURL %>" class="cancel-button">Cancel</a>
+                <a href="<%= previousURL %>" class="cancel-button">Cancel</a>
+            </div>
+            <a href="/category/<%=categoryId%>/<%=item._id%>/delete" class="delete-button">Delete</a>
         </fieldset>
     </form>
   </body>

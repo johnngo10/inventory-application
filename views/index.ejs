@@ -8,6 +8,7 @@
                 <a href=<%=`/category/${value._id}`%> class>
                     <p class="category-name"><%=value.name%></p>
                     <p><%=value.description%></p>
+                    <p class="item-count">Items: <%= value.items.length %></p>
                     <div class="category-actions">
                         <a href=<%=`/category/${value.id}/edit`%>>Edit</a>
                         <a href=<%=`/category/${value.id}/new-item`%>>Add item</a>

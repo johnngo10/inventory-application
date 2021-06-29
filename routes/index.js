@@ -42,6 +42,16 @@ router.post("/category/:id/new-item", item_controller.item_create_post);
 // GET request for editing item
 router.get("/category/:categoryId/:id/edit", item_controller.item_edit_get);
 
+// POST request for editing item
 router.post("/category/:categoryId/:id/edit", item_controller.item_edit_put);
+
+// GET request for deleting item
+router.get("/category/:categoryId/:id/delete", item_controller.item_delete_get);
+
+// POST request for deleting item
+router.post(
+  "/category/:categoryId/:id/delete",
+  item_controller.item_delete_post
+);
 
 module.exports = router;
